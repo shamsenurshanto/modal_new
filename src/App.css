@@ -36,3 +36,14 @@
     transform: rotate(360deg);
   }
 }
+.showDB{
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  margin-top: 80px;
+}
+.showDb2{
+  width: 80%;
+  margin-right: 30px;
+  align-items: center ;
+}
