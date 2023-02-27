@@ -26,7 +26,7 @@ import Form from 'react-bootstrap/Form';
 
   function setLogin(){
    
-    axios.get(url3, {
+    axios.post(url1, {
         
             "userEmailPhone":"ab99@gmail.com",
             "userPass":"12345678"

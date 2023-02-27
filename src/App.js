@@ -15,10 +15,11 @@ function App() {
          <div className='showDb2'>
           
       
-         <Login></Login>
+         {/* <Login></Login> */}
 
 
-           {/* <Products></Products> */}
+        
+           <Products></Products>
          </div>
      </div>
     </div>

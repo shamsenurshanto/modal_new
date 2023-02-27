@@ -87,9 +87,23 @@ function MyModal() {
 
     return (
         <>
-            <Button variant="primary" onClick={handleShow}>
-                Add new{" "}
+            <div className="">
+            
+            <div className="d-flex justify-content-start m-5 mt-5">
+            <Button className=" m-2" variant="primary" onClick={handleShow}><i class="fa fa-plus" aria-hidden="true"></i>Add new{" "}
             </Button>
+
+            <Button className="m-1" variant="secondary" onClick={handleShow}>
+                All Transaction
+            </Button>
+
+
+            <Button className="m-1" variant="secondary" onClick={handleShow}>
+                My Transaction{" "}
+            </Button>
+            </div>
+
+            </div>
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
