@@ -2,18 +2,31 @@ import React, { useEffect, useState } from 'react';
 import DataTable from 'react-data-table-component'
 import 'bootstrap/dist/css/bootstrap.css';
 import { Button } from 'bootstrap';
+import axios from 'axios';
+
 
 
 
 const Products = () => {
     const [ProductItems, setProductItems] = useState([]);
     const [cart, setCart] = useState("no image");
+
     let valuee;
     useEffect(() => {
-        fetch("https://restcountries.com/v2/all")
-            .then((res) => res.json())
-            .then((data) => setProductItems(data));
-    }, []);
+      axios.get("http://192.168.0.103:3000/api/transaction/alltypes",{withCredentials:true})
+    .then((response) => {
+      console.log("response");
+    });
+
+
+    });
+
+    
+  
+    
+ 
+    
+    
     const mystyle = {
         color: "white",
         
@@ -57,18 +70,18 @@ const Products = () => {
     const col = [
         {
             name : <p style={mystyle2} className="font-weight-bold" >Country Name</p>,
-            selector: (row) => <p style={mystyle2} className="font-weight-bold" onClick={()=> console.log(row)}>{row.name}</p> ,
+            selector: (row) => <p style={mystyle2} className="font-weight-bold" onClick={()=> console.log(row)}>{row._id}</p> ,
             // cell : (row) => (
             //     <button type="button" style={mystyle3} onClick={()=> console.log(row)} class="btn btn-primary">Primary</button>
             // )
         },
         {
             name : <p style={mystyle2} className="font-weight-bold">Country callingCodes</p> ,
-            selector: (row) => <p style={mystyle2} className="font-weight-bold" onClick={()=> console.log(row)}>{row.callingCodes}</p> 
+            selector: (row) => <p style={mystyle2} className="font-weight-bold" onClick={()=> console.log(row)}>{row.en_typeName}</p> 
         },
         {
             name : <p style={mystyle2} className="font-weight-bold">Country capital</p>,
-            selector: (row) => <p style={mystyle2} className="font-weight-bold" onClick={()=> console.log(row)} >{row.capital}</p> 
+            selector: (row) => <p style={mystyle2} className="font-weight-bold" onClick={()=> console.log(row)} >{row.ar_typeName}</p> 
             
         },
         {
