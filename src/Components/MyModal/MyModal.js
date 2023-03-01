@@ -5,7 +5,7 @@ import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Forms from "../Forms/Forms";
-import Hudai from "../Hudai/Hudai";
+import Hudai from "../ActionBtn/ActionBtn";
 import SplitBasicExample from "../SplitBasicExample/SplitBasicExample";
 import "./MyModal.css";
 
