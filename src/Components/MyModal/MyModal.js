@@ -5,6 +5,7 @@ import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
 import Forms from "../Forms/Forms";
+import Products from "../Products";
 
 import SplitBasicExample from "../SplitBasicExample/SplitBasicExample";
 import "./MyModal.css";
@@ -52,8 +53,10 @@ function MyModal() {
         console.log(data.target.value);
         setshowEmail(data.target.value);
         console.log(showEmail);
+    }
 
-       
+    function getalltransaction() {
+        console.log("Transaction");
     }
 
     bigD2 = (
@@ -86,47 +89,52 @@ function MyModal() {
     // console.log(dStatus)
 
     return (
-        <>
+        <div className="">
+            <div className="d-flex justify-content-end m-5 mt-5">
+                <div className="">
+                    <Button className=" m-2" variant="primary" onClick={handleShow}>
+                        <i class="fa fa-plus" aria-hidden="true"></i>Add new{" "}
+                    </Button>
+
+                    <Button className="m-1" variant="secondary" onClick={getalltransaction}>
+                        All Transaction
+                    </Button>
+
+                    <Button className="m-1" variant="secondary">
+                        My Transaction{" "}
+                    </Button>
+                </div>
+                <div>
+                    <Modal show={show} onHide={handleClose}>
+                        <Modal.Header closeButton>
+                            <Modal.Title>{showVal}</Modal.Title>
+                        </Modal.Header>
+                        <Modal.Body>
+                            <div className="SplitBasicExampleclass w-100">
+                                <SplitBasicExample added={added}></SplitBasicExample>
+                            </div>
+
+                            {showVal != "The money" ? bigD2 : bigD}
+                        </Modal.Body>
+                        <Modal.Footer>
+                            <Button variant="secondary" onClick={handleClose}>
+                                Close
+                            </Button>
+                            <Button variant="primary" onClick={handleClose}>
+                                Save Changes
+                            </Button>
+                        </Modal.Footer>
+                    </Modal>
+                    
+                </div>
+               
+            </div>
             <div className="">
-            
-            <div className="d-flex justify-content-start m-5 mt-5">
-            <Button className=" m-2" variant="primary" onClick={handleShow}><i class="fa fa-plus" aria-hidden="true"></i>Add new{" "}
-            </Button>
-
-            <Button className="m-1" variant="secondary" onClick={handleShow}>
-                All Transaction
-            </Button>
-
-
-            <Button className="m-1" variant="secondary" onClick={handleShow}>
-                My Transaction{" "}
-            </Button>
+              
+                <Products></Products>
             </div>
-
-            </div>
-
-            <Modal show={show} onHide={handleClose}>
-                <Modal.Header closeButton>
-                    <Modal.Title>{showVal}</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <div className="SplitBasicExampleclass w-100">
-                        <SplitBasicExample added={added}></SplitBasicExample>
-                    </div>
-
-                    {showVal != "The money" ? bigD2 : bigD}
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Close
-                    </Button>
-                    <Button variant="primary" onClick={handleClose}>
-                        Save Changes
-                    </Button>
-                </Modal.Footer>
-            </Modal>
             
-        </>
+        </div>
     );
 }
 

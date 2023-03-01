@@ -5,9 +5,12 @@ import Form from 'react-bootstrap/Form';
 
 
   
- const url1 = `http://192.168.0.103:3000/api/auth/login`;
+ const url1 = `https://smoggy-toad-fedora.cyclic.app/api/auth/login`;
  const url2 = `http://192.168.0.103:3000/api/transaction/alltypes`;
  const url3 = `http://192.168.0.103:3000/api/transaction/usersalltransactions`;
+ const url4 = `https://smoggy-toad-fedora.cyclic.app/api/user/getuser`;
+ const url5 = `https://smoggy-toad-fedora.cyclic.app/api/transaction/getsumofusers/63fc3d77847d6e54d113a686`;
+ const url6 = `https://smoggy-toad-fedora.cyclic.app/api/user/getuser`;
 
   function Login() {
     const [LoginProductEmail, setLoginProductEmail] = useState([]);
@@ -26,10 +29,9 @@ import Form from 'react-bootstrap/Form';
 
   function setLogin(){
    
-    axios.post(url1, {
+    axios.post(url6, {
         
-            "userEmailPhone":"ab99@gmail.com",
-            "userPass":"12345678"
+            "userEmailPhone":"ab99@gmail.com"
         
     },{withCredentials:true})
     .then((response) => {
@@ -42,7 +44,7 @@ import Form from 'react-bootstrap/Form';
 
   function setLogin2(){
    
-    axios.get("http://192.168.0.103:3000/api/transaction/alltypes",{withCredentials:true})
+    axios.get(url5,{withCredentials:true})
     .then((response) => {
       console.log(response);
     });

@@ -9,19 +9,12 @@ import { Button } from 'bootstrap';
 
 function App() {
   return (
-    <div className="App">
-     <MyModal></MyModal>
-     <div className='showDB'>
-         <div className='showDb2'>
-          
-      
-         {/* <Login></Login> */}
-
-
-        
-           <Products></Products>
-         </div>
-     </div>
+    <div className="App ">
+      <div className=''>
+      <MyModal></MyModal>
+      </div>
+    
+    {/* <Login></Login> */}
     </div>
   );
 }
