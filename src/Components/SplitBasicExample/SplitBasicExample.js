@@ -5,7 +5,7 @@ import Dropdown from 'react-bootstrap/Dropdown';
 import Audi from '../Audi';
 import Benz from '../Benz';
 import Ferrari from '../Ferrari';
-import Hudai from '../ActionBtn/ActionBtn';
+
 import './SplitBasicExample.css'
 
 
@@ -46,12 +46,12 @@ function SplitBasicExample(props) {
   return (
     
       
-      <div className='Dd' onClick={handleOnChange}>
+      <div className='Dd w-50' onClick={handleOnChange}>
       <div className='w-100 dropDown'>
       <select  id="dropdown-split-basic"  className="form-select"  onChange={handleOnChange}>
       
-          <option value="LoanTaken">Loan Taken </option>
-          <option value="LoanGiven">Loan Given </option>
+          <option value="Loan Taken">Loan Taken </option>
+          <option value="Loan Given">Loan Given </option>
         
         </select>
       </div>
