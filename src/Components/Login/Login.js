@@ -1,7 +1,9 @@
 import axios from 'axios';
+import { Modal } from 'bootstrap';
 import { useState } from 'react';
-import Button from 'react-bootstrap/Button';
+import Button from '@mui/material/Button';
 import Form from 'react-bootstrap/Form';
+import MyModal from '../MyModal/MyModal';
 
 
   
@@ -15,6 +17,8 @@ import Form from 'react-bootstrap/Form';
   function Login() {
     const [LoginProductEmail, setLoginProductEmail] = useState([]);
     const [LoginProductPass, setLoginProductPass] = useState([]);
+    const [loginPersonId,setloginPersonId]=useState(null);
+    
 
     function getdataEmail(data){
         console.log(data.target.value)
@@ -29,13 +33,13 @@ import Form from 'react-bootstrap/Form';
 
   function setLogin(){
    
-    axios.post(url6, {
-        
-            "userEmailPhone":"ab99@gmail.com"
-        
-    },{withCredentials:true})
+    axios.post(url1, {
+      "userEmailPhone":LoginProductEmail,
+      "userPass":LoginProductPass,
+  },{withCredentials:true})
     .then((response) => {
-      console.log(response);
+      console.log(response.data.data._id);
+      setloginPersonId(response.data.data._id)
     });
 
 
@@ -55,26 +59,33 @@ import Form from 'react-bootstrap/Form';
 
 
   return (
-    <div className='w-25 logindiv' >
-        <Form>
-      <Form.Group onChange={getdataEmail} className="mb-3" controlId="formBasicEmail">
-        <Form.Label  name="email">Email address</Form.Label>
-        <Form.Control type="email" placeholder="Enter email" />
-      </Form.Group>
+    <div>
+      <div className='w-25 logindiv' >
+     
+     <Form>
+   <Form.Group onChange={getdataEmail} className="mb-3" controlId="formBasicEmail">
+     <Form.Label  name="email">Email address</Form.Label>
+     <Form.Control type="email" placeholder="Enter email" />
+   </Form.Group>
 
-      <Form.Group onChange={getdataPass} className="mb-3" controlId="formBasicPassword">
-        <Form.Label name="pass">Password</Form.Label>
-        <Form.Control type="password" placeholder="Password" />
-      </Form.Group>
-      <Button  onClick={setLogin}>
-        Submit
-      </Button>
-    </Form>
+   <Form.Group onChange={getdataPass} className="mb-3" controlId="formBasicPassword">
+     <Form.Label name="pass">Password</Form.Label>
+     <Form.Control type="password" placeholder="Password" />
+   </Form.Group>
+   <Button variant="contained" onClick={setLogin}>
+     Submit
+   </Button>
+ </Form>
 
-    <Button  onClick={setLogin2}>
-        Submit
-      </Button>
+ <Button variant="contained"  onClick={setLogin2}>
+     Submit
+   </Button>
+
+   {/* <Modal></Modal> */}
+ </div>
+ <MyModal id={loginPersonId} mail ={LoginProductEmail}></MyModal>
     </div>
+  
   );
 }
 

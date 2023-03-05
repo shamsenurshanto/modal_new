@@ -1,17 +1,25 @@
 import React, { useEffect, useState } from "react";
 import DataTable from "react-data-table-component";
 import "bootstrap/dist/css/bootstrap.css";
-import { Button } from "bootstrap";
+import Button from "@mui/material/Button";
+
 import axios from "axios";
 import Profile from "./Profile/Profile";
 
-const Products = () => {
+const Products = (props) => {
+   console.log(props);
     const [ProductItems, setProductItems] = useState([]);
     const [FilteredProductItems, setFilteredProductItems] = useState([]);
     const [search, setSearch] = useState("");
     const [cart, setCart] = useState("");
     const [Profiledata, setProfiledata] = useState([]);
-  //profile data
+    const [show, setShow] = useState(false);
+    const [showEmail, setshowEmail] = useState("");
+    const [showAmount, setshowAmount] = useState(0);
+    const url6 = `https://smoggy-toad-fedora.cyclic.app/api/user/getuser`;
+    const url7 =`https://smoggy-toad-fedora.cyclic.app/api/transaction/createtransaction`;
+   // url7=props.urlname;
+  //profile data; 
   let profileValue ;
     const add2 = async () => {
         const res = await axios.get("https://smoggy-toad-fedora.cyclic.app/api/transaction/usersalltransactions", { withCredentials: true });
@@ -80,29 +88,18 @@ const Products = () => {
     };
 
     const myimg = {
-        // color: "Black",
-        // fontFamily: `cursive`,
-        // fontWeight: `bold`,
-        // padding: "10px",
-        // fontFamily: "Arial",
-        // width: "70px",
-        // borderRadius : "50%"
+        color: "Black",
+        fontFamily: `cursive`,
+        fontWeight: `bold`,
+        padding: "10px",
+        fontFamily: "Arial",
+        width: "70px",
+        borderRadius : "50%"
     };
-    //     function setLogin(){
+    
 
-    //       axios.post("https://smoggy-toad-fedora.cyclic.app/api/auth/login", {
 
-    //               "userEmailPhone":"ab99@gmail.com",
-    //               "userPass":"12345678"
 
-    //       },{withCredentials:true})
-    //       .then((response) => {
-    //         console.log(response);
-    //       });
-
-    //     }
-
-    //  setLogin()
     let pro
     console.log(FilteredProductItems);
     const getalltransaction = async () => {
@@ -110,6 +107,21 @@ const Products = () => {
         const res = await axios.get("https://smoggy-toad-fedora.cyclic.app/api/transaction/usersalltransactions", { withCredentials: true });
         console.log(res);
     };
+    const handleShow = () => {
+        setShow(true);
+        // console.log(data.target.value)
+        const add2 = async () => {
+            const res = await  axios.post(url6,{
+                "userEmailPhone":showEmail
+            },{withCredentials:true})
+        .then((response) => {
+            console.log(response);
+      //  setProfiledata(response.data.data)
+        });
+    }
+       add2()
+    };
+
 
     const col = [
         {
@@ -166,44 +178,62 @@ const Products = () => {
     ];
 
     return (
-        <div className="d-flex justify-content-end">
+       <div>
+        
+         <div className="d-flex justify-content-end">
 
-               <div className="w-25">
-                <Profile name={Profiledata}></Profile>
-            </div>
+<div  className="w-25 ">
+ <Profile name={Profiledata} id={cart}></Profile>
+</div>
 
-          <div className="w-75">
-            
-          <DataTable
-                columns={col}
-                data={FilteredProductItems}
-                pagination
-                fixedHeader
-                fixedHeaderScrollHeight="550px"
-                highlightOnHover
-                subHeader
-                subHeaderComponent={
-                    <input
-                        type="text"
-                        placeholder="Search here"
-                        className="form-control w-25"
-                        value={search}
-                        onChange={(e) => {
-                            console.log(search + " " + FilteredProductItems);
-                            setSearch(e.target.value);
-                        }}
-                    ></input>
-                }
-                onRowClicked={(row) => {
-                       console.log(row);
-                    setProfiledata(row);
-                    console.log(Profiledata);
+<div className="w-75">
 
-                }}
-            ></DataTable>
-          </div>
-          
-        </div>
+<DataTable
+ columns={col}
+ data={FilteredProductItems}
+ pagination
+ fixedHeader
+ fixedHeaderScrollHeight="550px"
+ highlightOnHover
+ subHeader
+ subHeaderComponent={
+     <input
+         type="text"
+         placeholder="Search here"
+         className="form-control w-25"
+         value={search}
+         onChange={(e) => {
+             console.log(search + " " + FilteredProductItems);
+             setSearch(e.target.value);
+         }}
+     ></input>
+ }
+ onRowClicked={(row) => {
+        console.log(row);
+        const add3 = async () => {
+            const res = await  axios.post(url6,{
+                "userEmailPhone":row.name
+            },{withCredentials:true})
+        .then((response) => {
+            console.log(response.data.data._id);
+      //  setProfiledata(response.data.data)
+      setCart(response.data.data);
+        });
+    }
+    
+
+   
+   add3()
+
+     setProfiledata(row);
+     console.log(Profiledata);
+
+ }}
+></DataTable>
+</div>
+
+</div>
+       </div>
     );
 };
 
