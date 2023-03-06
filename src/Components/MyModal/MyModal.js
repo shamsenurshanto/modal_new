@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Dropdown } from "bootstrap";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ButtonGroup from "react-bootstrap/esm/ButtonGroup";
 import Form from "react-bootstrap/Form";
 import Modal from "react-bootstrap/Modal";
@@ -12,6 +12,7 @@ import Button from "@mui/material/Button";
 
 import SplitBasicExample from "../SplitBasicExample/SplitBasicExample";
 import "./MyModal.css";
+import { Globalinfo } from "../../App";
 
 function MyModal(props) {
     console.log(props);
@@ -22,6 +23,7 @@ function MyModal(props) {
     const url7 =`https://smoggy-toad-fedora.cyclic.app/api/transaction/createtransaction`;
     const url8 =`https://smoggy-toad-fedora.cyclic.app/api/transaction/usersalltransactions`;
     const url9 =`https://smoggy-toad-fedora.cyclic.app/api/transaction/createdtransactions`;
+     const {Id,Mail} = useContext(Globalinfo)
     let urlForFilterarray=url8;
     let DropDownVal = "",
         dStatus = 0;
@@ -99,7 +101,21 @@ function MyModal(props) {
     function getdatasubmit() {
         console.log("hhshs");
        let type;
-       let person ;
+       let person= {
+        "type":'',
+        "amount":'',
+        "sender":{
+            "senderEmailPhone":'',
+            "senderId":''
+        },
+        "senderStatus":"",
+        "receiver":{
+            "receiverEmailPhone":"",
+            "receiverId":''
+        },
+        "receiverStatus":""
+        
+    } ;
        dStatus=1;
       
            if(dStatus==1)
@@ -116,7 +132,7 @@ function MyModal(props) {
                 "senderStatus":"SENT",
                 "receiver":{
                     "receiverEmailPhone":"",
-                    "receiverId":props.id
+                    "receiverId":Id
                 },
                 "receiverStatus":"ACKNOWLEDGED"
                 
@@ -129,8 +145,8 @@ function MyModal(props) {
                     "type":type,
                     "amount":showAmount,
                     "sender":{
-                        "senderEmailPhone":props.mail,
-                        "senderId":props.id
+                        "senderEmailPhone":Mail,
+                        "senderId":Id
                     },
                     "senderStatus":"SENT",
                     "receiver":{
@@ -165,7 +181,7 @@ function MyModal(props) {
         };
 
   
-  console.log(showVal3 +" " + props.id + " " + props.mail);
+  console.log(showVal3 +" " + Id + " " + Mail);
     bigD2 = (
         <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">

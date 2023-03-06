@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { Modal } from 'bootstrap';
-import { useContext, useState } from 'react';
+import { useState } from 'react';
 import Button from '@mui/material/Button';
 import Form from 'react-bootstrap/Form';
-import MyModal from '../MyModal/MyModal';
-import { Globalinfo } from '../../App';
-import {  useNavigate } from'react-router-dom';
+import MyModal from '../Components/MyModal/MyModal';
 
 
 
+  
  const url1 = `https://smoggy-toad-fedora.cyclic.app/api/auth/login`;
  const url2 = `http://192.168.0.103:3000/api/transaction/alltypes`;
  const url3 = `http://192.168.0.103:3000/api/transaction/usersalltransactions`;
@@ -17,16 +16,9 @@ import {  useNavigate } from'react-router-dom';
  const url6 = `https://smoggy-toad-fedora.cyclic.app/api/user/getuser`;
 
   function Login() {
-   
-
     const [LoginProductEmail, setLoginProductEmail] = useState([]);
     const [LoginProductPass, setLoginProductPass] = useState([]);
     const [loginPersonId,setloginPersonId]=useState(null);
-    const {GetId,getMail} = useContext(Globalinfo);
-
-    let navigation = useNavigate();
-
-    
     
 
     function getdataEmail(data){
@@ -49,9 +41,6 @@ import {  useNavigate } from'react-router-dom';
     .then((response) => {
       console.log(response.data.data._id);
       setloginPersonId(response.data.data._id)
-      GetId(response.data.data._id)
-      getMail(LoginProductEmail)
-      navigation('/dashboard')
     });
 
 
@@ -63,8 +52,6 @@ import {  useNavigate } from'react-router-dom';
     axios.get(url5,{withCredentials:true})
     .then((response) => {
       console.log(response);
-      setloginPersonId(response.data.data._id)
-     
     });
 
 
@@ -73,7 +60,7 @@ import {  useNavigate } from'react-router-dom';
 
 
   return (
-    <div className='d-flex justify-content-center'>
+    <div>
       <div className='w-25 logindiv' >
      
      <Form>
@@ -97,10 +84,7 @@ import {  useNavigate } from'react-router-dom';
 
    {/* <Modal></Modal> */}
  </div>
- {/*  */}
- {
-
- }
+ <MyModal id={loginPersonId} mail ={LoginProductEmail}></MyModal>
     </div>
   
   );
