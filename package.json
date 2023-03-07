@@ -11,11 +11,12 @@
     "@testing-library/user-event": "^13.5.0",
     "axios": "^1.3.4",
     "bootstrap": "^5.2.3",
+    "mdb-ui-kit": "^6.2.0",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.2",
     "react-data-table-component": "^7.5.3",
     "react-dom": "^18.2.0",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "styled-components": "^5.3.6",
     "web-vitals": "^2.1.4"
   },
@@ -43,7 +44,22 @@
       "last 1 safari version"
     ]
   },
+<<<<<<< HEAD
   "devDependencies": {
     "react-router-dom": "^6.8.2"
   }
+=======
+  "description": "This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shamsenurshanto/devproject.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shamsenurshanto/devproject/issues"
+  },
+  "homepage": "https://github.com/shamsenurshanto/devproject#readme"
+>>>>>>> f2bf22b698832eb0fae22241ce30d3a91ea3736f
 }

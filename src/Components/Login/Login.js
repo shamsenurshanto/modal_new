@@ -1,33 +1,17 @@
 import axios from 'axios';
-import { Modal } from 'bootstrap';
-import { useContext, useState } from 'react';
-import Button from '@mui/material/Button';
+import { useState } from 'react';
+import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
-import MyModal from '../MyModal/MyModal';
-import { Globalinfo } from '../../App';
-import {  useNavigate } from'react-router-dom';
 
 
-
- const url1 = `https://smoggy-toad-fedora.cyclic.app/api/auth/login`;
+  
+ const url1 = `http://192.168.0.103:3000/api/auth/login`;
  const url2 = `http://192.168.0.103:3000/api/transaction/alltypes`;
  const url3 = `http://192.168.0.103:3000/api/transaction/usersalltransactions`;
- const url4 = `https://smoggy-toad-fedora.cyclic.app/api/user/getuser`;
- const url5 = `https://smoggy-toad-fedora.cyclic.app/api/transaction/getsumofusers/63fc3d77847d6e54d113a686`;
- const url6 = `https://smoggy-toad-fedora.cyclic.app/api/user/getuser`;
 
   function Login() {
-   
-
     const [LoginProductEmail, setLoginProductEmail] = useState([]);
     const [LoginProductPass, setLoginProductPass] = useState([]);
-    const [loginPersonId,setloginPersonId]=useState(null);
-    const {GetId,getMail} = useContext(Globalinfo);
-
-    let navigation = useNavigate();
-
-    
-    
 
     function getdataEmail(data){
         console.log(data.target.value)
@@ -43,15 +27,13 @@ import {  useNavigate } from'react-router-dom';
   function setLogin(){
    
     axios.post(url1, {
-      "userEmailPhone":LoginProductEmail,
-      "userPass":LoginProductPass,
-  },{withCredentials:true})
+        
+            "userEmailPhone":"ab99@gmail.com",
+            "userPass":"12345678"
+        
+    },{withCredentials:true})
     .then((response) => {
-      console.log(response.data.data._id);
-      setloginPersonId(response.data.data._id)
-      GetId(response.data.data._id)
-      getMail(LoginProductEmail)
-      navigation('/dashboard')
+      console.log(response);
     });
 
 
@@ -60,11 +42,9 @@ import {  useNavigate } from'react-router-dom';
 
   function setLogin2(){
    
-    axios.get(url5,{withCredentials:true})
+    axios.get("http://192.168.0.103:3000/api/transaction/alltypes",{withCredentials:true})
     .then((response) => {
       console.log(response);
-      setloginPersonId(response.data.data._id)
-     
     });
 
 
@@ -73,36 +53,26 @@ import {  useNavigate } from'react-router-dom';
 
 
   return (
-    <div className='d-flex justify-content-center'>
-      <div className='w-25 logindiv' >
-     
-     <Form>
-   <Form.Group onChange={getdataEmail} className="mb-3" controlId="formBasicEmail">
-     <Form.Label  name="email">Email address</Form.Label>
-     <Form.Control type="email" placeholder="Enter email" />
-   </Form.Group>
+    <div className='w-25 logindiv' >
+        <Form>
+      <Form.Group onChange={getdataEmail} className="mb-3" controlId="formBasicEmail">
+        <Form.Label  name="email">Email address</Form.Label>
+        <Form.Control type="email" placeholder="Enter email" />
+      </Form.Group>
 
-   <Form.Group onChange={getdataPass} className="mb-3" controlId="formBasicPassword">
-     <Form.Label name="pass">Password</Form.Label>
-     <Form.Control type="password" placeholder="Password" />
-   </Form.Group>
-   <Button variant="contained" onClick={setLogin}>
-     Submit
-   </Button>
- </Form>
+      <Form.Group onChange={getdataPass} className="mb-3" controlId="formBasicPassword">
+        <Form.Label name="pass">Password</Form.Label>
+        <Form.Control type="password" placeholder="Password" />
+      </Form.Group>
+      <Button  onClick={setLogin}>
+        Submit
+      </Button>
+    </Form>
 
- <Button variant="contained"  onClick={setLogin2}>
-     Submit
-   </Button>
-
-   {/* <Modal></Modal> */}
- </div>
- {/*  */}
- {
-
- }
+    <Button  onClick={setLogin2}>
+        Submit
+      </Button>
     </div>
-  
   );
 }
 

@@ -3,6 +3,7 @@ import './App.css';
 import MyModal from './Components/MyModal/MyModal';
 import 'bootstrap/dist/css/bootstrap.css';
 import Products from './Components/Products';
+<<<<<<< HEAD
 import Login from './Components/Login/Login';
 
 import Button from "@mui/material/Button";
@@ -17,6 +18,9 @@ import Audi from './Components/Audi';
 
 export  const Globalinfo = createContext();
 
+=======
+import ActionBtn from './Components/ActionBtn/ActionBtn';
+>>>>>>> f2bf22b698832eb0fae22241ce30d3a91ea3736f
 
 
 function App() {
@@ -35,6 +39,7 @@ function App() {
  
  
   return (
+<<<<<<< HEAD
    <>
    {/* <Globalinfo.Provider value = {{appColor : Color2}}>   */}
 
@@ -50,6 +55,23 @@ function App() {
 
  
    </>
+=======
+    <div className="App">
+    <div className='d-flex justify-content-end'>
+    <div className='d-flex justify-content-center'>
+    <MyModal></MyModal>
+    <ActionBtn></ActionBtn>
+    </div>
+    </div>
+     <div className='showDB'>
+         <div className='showDb2'>
+         <Products></Products>
+         </div>
+     </div>
+
+    
+    </div>
+>>>>>>> f2bf22b698832eb0fae22241ce30d3a91ea3736f
   );
 }
 
